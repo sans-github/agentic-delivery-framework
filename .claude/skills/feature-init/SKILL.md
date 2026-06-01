@@ -174,9 +174,8 @@ Your feature runs through up to 8 stages. Stages 6, 7, and 8 always run
 [If any stages were skipped in Step 2: "Stages X and Y have been automatically
 skipped based on the artifacts you provided."]
 
-Below are the human approval gates remaining in your workflow — these are
-the moments where Claude stops and waits for your explicit sign-off.
-All are on by default. Uncheck any you want to bypass.
+Below are the human approval gates in your workflow. All are active by default.
+Check any you want to skip — leave all unchecked to keep every gate active.
 ```
 
 **Deployment target**
@@ -189,49 +188,45 @@ Options: **Local** / **AWS** (user types a custom target via the free-text Other
 
 **Gate config — three grouped calls**
 
+Each call is multi-select. Options start unchecked. Checking an option means skipping that gate. If the user checks nothing, all gates in that group remain active.
+
 **Call 1 — "Discovery and design gates"** (skip this call entirely if both Stage 1 and Stage 2 are `[-]`)
 
 Use `AskUserQuestion` (multi-select):
 
-> "Discovery and design review gates — uncheck any to bypass:"
+> "Discovery and design gates — check any to skip:"
 
 Options (include only if the corresponding stage is active):
-- Approve PRD
-- Approve mocks
-
-All options pre-checked.
+- Skip PRD approval
+- Skip mocks approval
 
 **Call 2 — "Technical planning gates"** (skip this call entirely if all Stage 3 gate steps are `[-]`)
 
 Use `AskUserQuestion` (multi-select):
 
-> "Technical planning review gates — uncheck any to bypass:"
+> "Technical planning gates — check any to skip:"
 
 Options (include only if the corresponding step is active):
-- Approve system architecture
-- Approve high-level design
-- Approve implementation plan
-
-All options pre-checked.
+- Skip system architecture approval
+- Skip high-level design approval
+- Skip implementation plan approval
 
 **Call 3 — "Engineering and wrap-up gates"**
 
 Use `AskUserQuestion` (multi-select):
 
-> "Engineering and wrap-up review gates — uncheck any to bypass:"
+> "Engineering and wrap-up gates — check any to skip:"
 
 Options:
-- Approve deployment plan (include only if the Infrastructure step in Stage 4 is active)
-- Confirm master baseline is current
-- Approve README and CLAUDE.md
-- Approve release readiness
-
-All options pre-checked.
+- Skip deployment plan approval (include only if the Infrastructure step in Stage 4 is active)
+- Skip master baseline confirmation
+- Skip README and CLAUDE.md approval
+- Skip release readiness approval
 
 **Apply the selections**
 
 Update `[feature-folder]/workflow/feature-setup.md`:
-- For each unchecked gate: find the matching `👤` step line within its stage and change its `[ ]` to `[-]`
+- For each checked option: find the matching `👤` step line within its stage and change its `[ ]` to `[-]`
 - Replace the `local` default in the `## Deployment target` block with the user's choice
 
 Print a plain-language summary with consistent alignment:
