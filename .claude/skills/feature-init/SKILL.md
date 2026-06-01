@@ -72,17 +72,16 @@ Read `.claude/my-project-config.md`. Ask the two questions below in sequence.
 
 **1a. GitHub issue labels**
 
-Read the label taxonomy from `my-project-config.md` and display it as a markdown table:
+Read the label taxonomy from `my-project-config.md`. Use `AskUserQuestion` (single-select) with the question text built from the actual label values:
 
-| Category | Labels |
-|----------|--------|
-| Area | `be` `fe` `db` `infra` `design` `qa` `spec` `mocks` `contract` |
-| Type | `bug` `debt` `ux` `gap` |
-| Priority | `p0` `p1` `p2` |
+> "GitHub issue labels for this project:
+> Area: be · fe · db · infra · design · qa · spec · mocks · contract
+> Type: bug · debt · ux · gap
+> Priority: p0 · p1 · p2
+>
+> Do these look right?"
 
-Then use `AskUserQuestion` (single-select):
-
-> "These are the GitHub issue labels for this project. Do they look right?"
+Substitute the actual label values read from `my-project-config.md` — do not hardcode the labels above.
 
 Options: **Looks good** / **I need to change them** (if changes needed, tell user to edit `.claude/my-project-config.md` directly, then re-ask).
 
