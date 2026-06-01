@@ -36,7 +36,7 @@ From this point forward, every agent receives:
 5. Check off delivery tracker steps and write artifact links as normal
 6. Commit at every 💾 step with the placeholder files
 7. If anything breaks, stop immediately and surface it -- do not work around it
-8. **If you are the PM agent conducting a requirements interview:** ask a maximum of 2 questions, focused only on what the user is building and which tech layers are likely needed. Do not probe for detailed acceptance criteria or edge cases.
+8. **If you are the PM agent conducting a requirements interview:** ask a maximum of 2 questions about what the user is building. Do not ask about tech layers (that is EM's job at Stage 3). Do not probe for detailed acceptance criteria or edge cases.
 
 ---
 
