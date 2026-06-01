@@ -19,7 +19,7 @@ Use `AskUserQuestion` (single-select): "Ready to start the dry run?" -- options:
 
 ## Step 1: Run feature-init with dry-run rules
 
-**Always use Path A (describe it now).** Dry run never uses Path C and never triggers artifact collection (mocks, HLD). The PM agent will run a short interview, constrained by dry-run rule #8 below to a maximum of 2 questions.
+**Always use Path A (describe it now).** Dry run never uses Path C and never triggers artifact collection (mocks, HLD). When feature-init Step 0 presents the "How do you want to start?" question, auto-select "Describe it now" without showing that choice to the user. The PM agent will run a short interview, constrained by dry-run rule #8 below to a maximum of 2 questions.
 
 Prepend the following dry-run block to **every agent invoked throughout the entire workflow** — including the PM agent in Step 0 of feature-init. Then invoke `/feature-init` normally.
 
@@ -31,7 +31,7 @@ From this point forward, every agent receives:
 
 1. Write exactly one line to every artifact file you produce: `[DRY RUN] Pretend done -- [artifact name]`
 2. Use the correct file path from `my-project-config.md` -- paths are tested even if content is fake
-3. If the artifact needs a `Status: Approved` header, write the placeholder first, then the status line below it
+3. If the artifact needs a `Status: Approved` header, write it at the top of the file, then the placeholder content below it
 4. Do not skip or auto-approve human gates -- surface them exactly as the rules require
 5. Check off delivery tracker steps and write artifact links as normal
 6. Commit at every 💾 step with the placeholder files
