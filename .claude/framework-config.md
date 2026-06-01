@@ -10,9 +10,9 @@ Design docs and plans live under `generated-docs/`. Production artifacts (code, 
 |---|---|---|---|
 | PRD | `product-specs/prd.md` | PM writes | `senior-product-manager.md` |
 | Mocks | `generated-docs/design/` | Designer writes, PM approves | `senior-ux-ui-designer.md`, `senior-macos-designer.md` |
-| Feature Setup | `workflow/feature-setup.md` | Filled in by `/feature-init` (phase config, deployment target, context) | `feature-init` skill |
+| Workflow | `workflow/workflow.md` | Phase config, deployment target, and live delivery tracker in one file; config set by `/feature-init`, `## Progress` seeded at kickoff | `feature-init` skill |
 | Kickoff Plan | `workflow/kickoff-plan.md` | Orchestrator writes, human approves | `kickoff-prompt.md` |
-| Implementation Plan | `workflow/implementation-plan.md` | EM writes, human approves; steps then seeded into delivery-tracker.md | `senior-engineering-manager.md` |
+| Implementation Plan | `workflow/implementation-plan.md` | EM writes, human approves; steps then seeded into `## Progress` in `workflow.md` | `senior-engineering-manager.md` |
 | System Architecture | `generated-docs/architecture/sys-arch.md` | Arch writes, EM approves | `senior-software-architect.md` |
 | Deployment Plan | `generated-docs/architecture/deployment-plan.md` | DevOps writes, Human approves | `senior-devops-engineer.md` |
 | Infrastructure Verification | `generated-docs/ops/infra-verification.md` | DevOps writes after smoke tests pass, Human approves | `senior-devops-engineer.md` |
@@ -29,13 +29,12 @@ Design docs and plans live under `generated-docs/`. Production artifacts (code, 
 | DB Seeds (dev only) | `src/db/seeds/dev/` | BE | `db-schema.md` |
 | Infrastructure | `src/infra/` | DevOps | `senior-devops-engineer.md` |
 | Tech Debt / Bug Backlog | `BACKLOG.md` | EM triages | `backlog-reporting-rule.md` |
-| Delivery Tracker | `workflow/delivery-tracker.md` | Seeded at kickoff; progressively filled by EM | `contract-first-rule.md`, `progress-tracking-rule.md` |
 
 ---
 
 ## Contract approvals
 
-Agent-to-agent technical contracts that block downstream work until approved. Approval requires a `Status: Approved — [role]` header at the top of the file. Human milestone gates (PRD, Mocks, Sys Arch, Implementation Plan) are defined per-project in `workflow/delivery-tracker.md`.
+Agent-to-agent technical contracts that block downstream work until approved. Approval requires a `Status: Approved — [role]` header at the top of the file. Human milestone gates (PRD, Mocks, Sys Arch, Implementation Plan) are defined per-project in `## Progress` in `workflow/workflow.md`.
 
 | Artifact | Approver | Blocks |
 |---|---|---|

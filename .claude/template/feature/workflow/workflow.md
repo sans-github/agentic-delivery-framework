@@ -2,14 +2,14 @@
 purpose: >
   Filled in by /feature-init before any agent begins work.
   Configures which phases to include or skip and any deviations from the default collaboration pattern.
-  Agents must read this before doing anything and use it to seed delivery-tracker.md.
+  Agents must read this before doing anything. The ## Progress section below is seeded at kickoff and serves as the live delivery tracker.
 ---
 
 # Project Config
 
 ## Project phases
 
-The orchestrator reads this to seed `delivery-tracker.md`.
+The orchestrator reads this to seed the `## Progress` section below.
 
 Toggle rules:
 - `[ ]` -- active, include in the plan
@@ -52,7 +52,7 @@ Toggle rules:
 - [ ] **Implementation Plan**
   - [ ] **EM:** produce detailed implementation plan → [Implementation Plan]; write Stage 4 and Stage 5 steps to `workflow/implementation-plan.md` as a standalone file; every step must include a done condition (e.g. "done when: Status: Approved written to file" or "done when: human confirms")
   - [ ] 👤💾 **HUMAN:** review and approve implementation plan
-  - [ ] **EM:** seed approved steps into Stage 4 and Stage 5 of `delivery-tracker.md`, replacing the skeleton
+  - [ ] **EM:** seed approved steps into Stage 4 and Stage 5 of `## Progress` in this file, replacing the skeleton
 
 ---
 
@@ -202,7 +202,7 @@ local
 
 ## Additional context
 
-Include anything that should inform delivery-tracker.md -- handwritten notes, whiteboard photos, Excalidraw diagrams, sketches, or rough ideas. Agents must respect and factor all of this in when generating delivery-tracker.md.
+Include anything that should inform the `## Progress` tracker -- handwritten notes, whiteboard photos, Excalidraw diagrams, sketches, or rough ideas. Agents must respect and factor all of this in when generating the `## Progress` section.
 
 ```
 # Example:
@@ -210,3 +210,11 @@ Include anything that should inform delivery-tracker.md -- handwritten notes, wh
 - The team discussed keeping the data model flat -- avoid joins where possible
 - The PM has a strong preference for shipping Phase 1 without auth; add auth in Phase 2
 ```
+
+---
+
+## Progress
+
+<!-- Seeded at kickoff from ## Project phases above. Progressively filled by EM after the implementation plan is approved. The orchestrator works through this top-to-bottom. When it runs out of steps, it stops. -->
+
+[ ]  not started   |   [-]  skipped   |   [x]  done

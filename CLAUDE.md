@@ -51,7 +51,7 @@ Rules in `.claude/rules/` are loaded automatically. Key ones to know:
 - `contract-first-rule.md`: no downstream work until upstream artifact is approved. Strict sequencing.
 - `product-baseline-rule.md`: `projects/master/` must stay current. PM and Designer are blocked from starting new features until it is.
 - `backlog-reporting-rule.md`: agents append discovered bugs/debt to `BACKLOG.md` in the repo root. Never self-assign priority.
-- `progress-tracking-rule.md`: `delivery-tracker.md` is the single source of truth for human gates and phase progress; agents check off steps directly and resume from it after interruption.
+- `progress-tracking-rule.md`: `## Progress` in `workflow.md` is the single source of truth for human gates and phase progress; agents check off steps directly and resume from it after interruption.
 - `delegation-rule.md`: when a step names a specific role, the orchestrator must delegate to that agent, never self-execute on its behalf.
 - `workflow-phases-rule.md`: all multi-step work must be structured as phased workflows with numbered steps and expected artifacts.
 - `artifact-review-rule.md`: at every human-gate artifact, output the full MD content in the response and use `AskUserQuestion` with Approve / Request changes.

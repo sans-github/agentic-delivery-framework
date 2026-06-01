@@ -1,12 +1,12 @@
 # Rule: Progress Tracking for Multi-Phase Work
 
-`workflow/delivery-tracker.md` is the single source of truth for both human milestone gates and phase progress. It is progressively filled by EM as decisions are made.
+`## Progress` in `workflow/workflow.md` is the single source of truth for both human milestone gates and phase progress. It is progressively filled by EM as decisions are made.
 
-For any task that follows a phased workflow, maintain `delivery-tracker.md` throughout execution.
+For any task that follows a phased workflow, maintain `## Progress` in `workflow.md` throughout execution.
 
 ## Setup
 
-`delivery-tracker.md` is seeded at kickoff with initial steps and human gates. EM adds detailed implementation steps progressively -- after arch engagement is decided, after detailed design, etc. Do not begin implementation work until the relevant steps exist in the plan.
+`## Progress` is seeded at kickoff with initial steps and human gates. EM adds detailed implementation steps progressively -- after arch engagement is decided, after detailed design, etc. Do not begin implementation work until the relevant steps exist in the plan.
 
 ## During execution
 
@@ -20,7 +20,7 @@ For any task that follows a phased workflow, maintain `delivery-tracker.md` thro
 
 ## On resume (interrupted session)
 
-1. Read `delivery-tracker.md` first.
+1. Read `## Progress` in `workflow.md` first.
 2. Find the last checked step.
 3. Verify that step's output actually exists (file, artifact, commit). If it does not, uncheck it and redo it.
 4. Continue from the first unchecked step.

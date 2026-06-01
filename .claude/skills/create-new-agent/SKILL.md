@@ -132,7 +132,7 @@ Work through this list in order. For each file, check whether the new role or sk
 | `.claude/rules/backlog-reporting-rule.md` | Add the role's Area label (e.g. `Swift`) if not already present |
 | `.claude/my-project-config.md` | Add tech stack row if introducing a new layer |
 | `.claude/framework-config.md` | Add any new artifact to File locations table; update Mocks row if relevant |
-| `.claude/template/feature/workflow/feature-setup.md` | Add Detailed Design block, Issues List block, and Development block for the new role in Stage 4; add QA coverage in Stage 5; update Stage 6 if Designer-equivalent |
+| `.claude/template/feature/workflow/workflow.md` | Add Detailed Design block, Issues List block, and Development block for the new role in Stage 4; add QA coverage in Stage 5; update Stage 6 if Designer-equivalent |
 | `README.md` | Add to agent table and skills mindmap; add any install-time note specific to this role's skills under Customizing |
 
 Do not skip a file because it "probably doesn't need updating." Check each one.

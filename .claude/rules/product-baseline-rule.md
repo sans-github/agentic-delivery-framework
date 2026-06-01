@@ -14,7 +14,7 @@ projects/
 
 ## When to update
 
-`projects/master/` is updated as part of **Stage 6: Master Baseline Update** in every feature's `feature-setup.md`. Stage 6 runs after Stage 5 sign-off and is never skippable.
+`projects/master/` is updated as part of **Stage 6: Master Baseline Update** in every feature's `workflow.md`. Stage 6 runs after Stage 5 sign-off and is never skippable.
 
 - **PM** merges the feature PRD into `projects/master/product-specs/prd.md`: add new sections, update changed sections, do not duplicate. If master is empty, copy as-is.
 - **Designer** merges the feature mocks into `projects/master/mocks/`: add new pages, replace updated pages, remove obsolete pages. If master is empty, copy as-is.

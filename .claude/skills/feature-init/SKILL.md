@@ -144,7 +144,7 @@ If a provided artifact is a folder, copy all contents into the destination. If C
 
 If yes: collect the mocks path, validate it, and proceed with all three artifacts in context. If no: inform the user that Design will run to produce mocks, and that EM will then validate the provided HLD against those mocks before Stage 3 can proceed. Continue with PRD-only skip rules below.
 
-**Mark skipped stages in `[feature-folder]/workflow/feature-setup.md`:**
+**Mark skipped stages in `[feature-folder]/workflow/workflow.md`:**
 
 Apply these rules based on which artifacts were provided:
 
@@ -164,7 +164,7 @@ Then invoke `/my-git-commit` automatically without asking. Commit subject: `"Sca
 
 ## Step 3: Phase Config
 
-Read `[feature-folder]/workflow/feature-setup.md` to identify which stages are currently active (`[ ]`) and which are already skipped (`[-]`) from Step 2 artifact rules. Collect all `👤` gate lines from active stages.
+Read `[feature-folder]/workflow/workflow.md` to identify which stages are currently active (`[ ]`) and which are already skipped (`[-]`) from Step 2 artifact rules. Collect all `👤` gate lines from active stages.
 
 **Orientation (output before any question):**
 
@@ -225,7 +225,7 @@ Options (no description lines):
 
 **Apply the selections**
 
-Update `[feature-folder]/workflow/feature-setup.md`:
+Update `[feature-folder]/workflow/workflow.md`:
 - For each checked option: find the matching `👤` step line within its stage and change its `[ ]` to `[-]`
 - Replace the `local` default in the `## Deployment target` block with the user's choice
 

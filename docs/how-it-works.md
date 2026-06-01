@@ -34,9 +34,9 @@ Each arrow is a formal contract. Before any agent starts, the artifact it depend
 
 You are never cut out of the loop. At every major milestone, Claude stops, tells you what was produced, and waits for your sign-off before continuing.
 
-Gates include: PRD, Mocks, System Architecture, High-Level Design, Kickoff Plan, and Delivery sign-off. Between gates, agents run autonomously and track their progress in `workflow/delivery-tracker.md`.
+Gates include: PRD, Mocks, System Architecture, High-Level Design, Kickoff Plan, and Delivery sign-off. Between gates, agents run autonomously and track their progress in `## Progress` in `workflow/workflow.md`.
 
-If a session is interrupted for any reason, Claude reads `delivery-tracker.md` first, finds the last confirmed step, verifies the artifact actually exists, and resumes from there. You never lose progress.
+If a session is interrupted for any reason, Claude reads `## Progress` in `workflow.md` first, finds the last confirmed step, verifies the artifact actually exists, and resumes from there. You never lose progress.
 
 ---
 
@@ -84,7 +84,7 @@ Rules in `.claude/rules/` are loaded by Claude Code for every session. You do no
 | Rule | What it enforces |
 |------|-----------------|
 | `contract-first` | No agent starts work until its upstream artifact is approved |
-| `progress-tracking` | `delivery-tracker.md` is the single source of truth; agents check off steps as they complete |
+| `progress-tracking` | `## Progress` in `workflow.md` is the single source of truth; agents check off steps as they complete |
 | `delegation` | When a step names a specific role, the orchestrator delegates to that agent; it never self-executes on that role's behalf |
 | `workflow-phases` | Multi-step work must be defined as a phased workflow with numbered steps, responsible roles, and concrete artifacts |
 | `artifact-review` | At every human-gate artifact, the agent outputs the full markdown content and uses `AskUserQuestion` with Approve / Request changes before proceeding |
@@ -114,8 +114,7 @@ projects/
     │   ├── contracts/       API contract
     │   └── qa/              test plan
     └── workflow/
-        ├── feature-setup.md     phase config and deployment target
-        └── delivery-tracker.md  live execution log
+        └── workflow.md          phase config, deployment target, and live progress tracker
 src/                  all production artifacts: source code, DB, migrations, IaC
 ```
 

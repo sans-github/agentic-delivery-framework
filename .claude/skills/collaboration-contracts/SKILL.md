@@ -359,6 +359,6 @@ When Swift Engineer identifies a control or behavior that cannot be implemented 
 
 ## EM produces (standalone)
 
-- Plan with Human Gates (`workflow/delivery-tracker.md`) -- progressively filled by EM; seeded at kickoff with initial steps up to PM→EM handoff; after handoff, EM adds arch steps (if needed), HLD, and then the detailed implementation plan (full phase-by-phase breakdown with numbered steps, responsible agents, artifacts, loop exit conditions, and human checkpoints); always add a 👤 human gate after the implementation plan before execution begins; the orchestrator works through it top-to-bottom and stops when it reaches the end, waiting for EM to add the next batch
+- `## Progress` in `workflow/workflow.md` -- progressively filled by EM; seeded at kickoff with initial steps up to PM→EM handoff; after handoff, EM adds arch steps (if needed), HLD, and then the detailed implementation plan (full phase-by-phase breakdown with numbered steps, responsible agents, artifacts, loop exit conditions, and human checkpoints); always add a 👤 human gate after the implementation plan before execution begins; the orchestrator works through it top-to-bottom and stops when it reaches the end, waiting for EM to add the next batch
 - Kickoff Plan (`workflow/kickoff-plan.md`) -- orchestrator is author
 - Eng Plans (HLD) (`generated-docs/architecture/hld.md`) -- EM is gatekeeper
