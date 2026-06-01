@@ -55,7 +55,7 @@ Severity: 🔴 P0 broken/affects users now -- 🟡 P1 degrades quality or blocks
 
 ## GitHub labels
 
-Backlog fields map directly to flat GH labels -- no prefixes. Apply one area label and one type label per issue; priority is added at triage. Full label list is in `tech-config.md`.
+Backlog fields map directly to flat GH labels -- no prefixes. Apply one area label and one type label per issue; priority is added at triage. Full label list is in `my-project-config.md`.
 
 ---
 

@@ -26,7 +26,7 @@ Invoke `/feature-init` normally. After it hands off to the kickoff prompt, prepe
 **DRY RUN MODE -- read before doing anything**
 
 1. Write exactly one line to every artifact file you produce: `[DRY RUN] Pretend done -- [artifact name]`
-2. Use the correct file path from `tech-config.md` -- paths are tested even if content is fake
+2. Use the correct file path from `my-project-config.md` -- paths are tested even if content is fake
 3. If the artifact needs a `Status: Approved` header, write the placeholder first, then the status line below it
 4. Do not skip or auto-approve human gates -- surface them exactly as the rules require
 5. Check off delivery tracker steps and write artifact links as normal

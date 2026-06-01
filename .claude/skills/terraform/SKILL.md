@@ -533,4 +533,4 @@ Adapt the queries to the provider and resource classes actually used in the proj
 | Terraform vars | `src/infra/terraform.tfvars` | May contain credentials; must not persist after environment is gone |
 | Provider cache | `src/infra/.terraform/` | No secrets; safe to keep or delete |
 
-Adjust paths to match the project's actual layout (resolved from `tech-config.md` File locations table).
+Adjust paths to match the project's actual layout (resolved from `my-project-config.md` File locations table).

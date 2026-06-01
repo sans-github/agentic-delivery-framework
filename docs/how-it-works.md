@@ -67,7 +67,7 @@ You can customize any skill by editing its `SKILL.md`. Brand guidelines, tech st
 
 ## Customizing for your project
 
-**Tech stack:** open `tech-config.md` and update it to match your tools. This is where agents resolve file paths, naming conventions, and tooling choices. Every artifact path is derived from this file at runtime.
+**Tech stack:** open `my-project-config.md` and update the Tech stack table to match your tools. GitHub issue labels are also configurable there. Artifact paths, DB conventions, and code style live in `framework-config.md`, which is loaded automatically via the `@` import at the bottom of `my-project-config.md`.
 
 **Brand guidelines:** a default brand (Off-White + Deep Teal, Plus Jakarta Sans, full light/dark token set) ships in `skills/brand-guidelines/SKILL.md`. Replace it with your own palette and typography. Designer, FE, PM, and QA all read it before producing any UI work.
 
@@ -88,7 +88,7 @@ Rules in `.claude/rules/` are loaded by Claude Code for every session. You do no
 | `delegation` | When a step names a specific role, the orchestrator delegates to that agent; it never self-executes on that role's behalf |
 | `workflow-phases` | Multi-step work must be defined as a phased workflow with numbered steps, responsible roles, and concrete artifacts |
 | `artifact-review` | At every human-gate artifact, the agent outputs the full markdown content and uses `AskUserQuestion` with Approve / Request changes before proceeding |
-| `artifact-paths` | All artifact paths must be resolved from the File locations table in `tech-config.md`; never hardcoded |
+| `artifact-paths` | All artifact paths must be resolved from the File locations table in `framework-config.md`; never hardcoded |
 | `db-schema-change` | Every schema change requires a versioned migration file and an updated ER diagram in the same commit |
 | `gitignore` | Every agent that produces files in `src/` ensures `.gitignore` covers those file types in the same commit; first agent creates the file, all others append only |
 | `product-baseline` | `projects/master/` must reflect the current shipped product before any new feature starts |

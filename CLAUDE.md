@@ -10,7 +10,7 @@ Consumers install this repo into their own project via `install.sh`. They do not
 
 ## How consumers use it
 
-1. Run `install.sh` to copy `.claude/agents/`, `.claude/rules/`, `.claude/skills/`, `.claude/template/`, `.claude/SETUP-GUIDE.md`, and `.claude/tech-config.md` into their project.
+1. Run `install.sh` to copy `.claude/agents/`, `.claude/rules/`, `.claude/skills/`, `.claude/template/`, `.claude/my-project-config.md`, and `.claude/framework-config.md` into their project.
 2. Run `/feature-init` in Claude Code (handles everything: requirements gathering via PM agent, folder scaffolding, phase config, and kickoff). No manual file editing required.
 
 ## Folder structure and the reasoning behind it
@@ -32,8 +32,8 @@ Consumers install this repo into their own project via `install.sh`. They do not
 │   │   ├── product-specs/prd.md    -- full PRD merged across all shipped features
 │   │   └── mocks/                  -- current UI mocks reflecting live product
 │   └── kickoff-prompt.md                  -- kickoff prompt (stays at template root, not copied per feature)
-├── SETUP-GUIDE.md
-└── tech-config.md           -- stack/conventions consumers tailor once after install
+├── my-project-config.md     -- consumer-facing config: Tech stack and GitHub labels; imports framework-config.md
+└── framework-config.md      -- internal framework conventions (file paths, DB rules, code style, approvals)
 projects/             -- per-feature scaffolding and product specs (managed by /feature-init)
 src/                  -- all production artifacts: source code, db schema, migrations, seeds, IaC
 ```
@@ -55,7 +55,7 @@ Rules in `.claude/rules/` are loaded automatically. Key ones to know:
 - `delegation-rule.md`: when a step names a specific role, the orchestrator must delegate to that agent, never self-execute on its behalf.
 - `workflow-phases-rule.md`: all multi-step work must be structured as phased workflows with numbered steps and expected artifacts.
 - `artifact-review-rule.md`: at every human-gate artifact, output the full MD content in the response and use `AskUserQuestion` with Approve / Request changes.
-- `artifact-paths-rule.md`: all artifact paths must be resolved from the File locations table in `tech-config.md`, never hardcoded.
+- `artifact-paths-rule.md`: all artifact paths must be resolved from the File locations table in `my-project-config.md` (which imports `framework-config.md` where the table lives), never hardcoded.
 - `db-schema-change-rule.md`: every schema change requires a versioned migration file and updated ER diagram in the same commit.
 - `gitignore-rule.md`: every agent that produces files in `src/` must ensure `.gitignore` covers those file types in the same commit. First agent creates the file; all others append only.
 
@@ -100,7 +100,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/sans-github/claude-delivery-
 bash <(curl -fsSL https://raw.githubusercontent.com/sans-github/claude-delivery-team/main/install.sh) v1.0.0  # pin a tag or branch
 ```
 
-Copies `.claude/agents/`, `.claude/rules/`, `.claude/skills/`, `.claude/template/`, `.claude/SETUP-GUIDE.md`, and `.claude/tech-config.md` into the consumer project. Also scaffolds `BACKLOG.md` in the consumer root if it doesn't exist. Consumers commit the result to lock the version.
+Copies `.claude/agents/`, `.claude/rules/`, `.claude/skills/`, `.claude/template/`, `.claude/my-project-config.md`, and `.claude/framework-config.md` into the consumer project. Also scaffolds `BACKLOG.md` in the consumer root if it doesn't exist. Consumers commit the result to lock the version.
 
 ## Structural change verification (mandatory)
 

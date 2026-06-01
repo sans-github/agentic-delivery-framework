@@ -30,7 +30,7 @@ else
   mkdir -p "$ROOT/.claude"
 fi
 
-for item in agents rules skills template SETUP-GUIDE.md tech-config.md; do
+for item in agents rules skills template my-project-config.md framework-config.md; do
   src="$TMP/.claude/$item"
   dst="$ROOT/.claude/$item"
   if [ -e "$src" ]; then
@@ -52,13 +52,13 @@ fi
 
 
 if [ -f "$ROOT/CLAUDE.md" ]; then
-  if ! grep -q "@.claude/tech-config.md" "$ROOT/CLAUDE.md"; then
-    printf "\n@.claude/tech-config.md\n" >> "$ROOT/CLAUDE.md"
-    echo "  @.claude/tech-config.md -> appended to CLAUDE.md"
+  if ! grep -q "@.claude/my-project-config.md" "$ROOT/CLAUDE.md"; then
+    printf "\n@.claude/my-project-config.md\n" >> "$ROOT/CLAUDE.md"
+    echo "  @.claude/my-project-config.md -> appended to CLAUDE.md"
   fi
 else
-  printf "@.claude/tech-config.md\n" > "$ROOT/CLAUDE.md"
-  echo "  CLAUDE.md created with @.claude/tech-config.md"
+  printf "@.claude/my-project-config.md\n" > "$ROOT/CLAUDE.md"
+  echo "  CLAUDE.md created with @.claude/my-project-config.md"
 fi
 
 rm -rf "$TMP"

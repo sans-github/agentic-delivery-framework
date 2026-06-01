@@ -38,7 +38,7 @@ This does the following:
 
 - Copies agents, rules, skills, and templates into `.claude/`
 - Copies this README into `.claude/agents-guide.md`
-- Creates or updates `CLAUDE.md` with `@.claude/tech-config.md` — this import is what makes Claude Code load your stack config automatically. Every agent resolves artifact paths, naming conventions, and tooling choices from it. Without it, agents cannot locate where to write anything.
+- Creates or updates `CLAUDE.md` with `@.claude/my-project-config.md` — this import is what makes Claude Code load your stack config automatically. `my-project-config.md` imports `framework-config.md`, so agents get artifact paths, naming conventions, and tooling choices transitively. Without this import, agents cannot locate where to write anything.
 
 Commit the result to lock the version.
 
@@ -148,5 +148,4 @@ Agents collaborate by exchanging artifacts. The Gatekeeper is the role with fina
 
 ## See also
 
-- [Setup guide](.claude/SETUP-GUIDE.md)
 - [Contributing](CONTRIBUTING.md)

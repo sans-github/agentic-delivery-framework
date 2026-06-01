@@ -7,7 +7,7 @@ description: Scaffold a new feature folder under projects/. Creates projects/mas
 
 Scaffolds a new feature workspace and guides the user through requirements, config, and kickoff interactively. One command -- no manual file editing required.
 
-**Sequence:** Requirements Kickoff → Scaffold → Phase Config → Kick off
+**Sequence:** Requirements Kickoff → Project Config Review → Scaffold → Phase Config → Kick off
 
 ---
 
@@ -49,11 +49,35 @@ After any path, present the slug suggestion to the user using `AskUserQuestion`:
 
 Options: "Yes, use this name" / "Edit it" (user types a different slug via Other).
 
-Hold the confirmed slug and requirements summary in context -- they are written to `prd.md` after the scaffold in Step 1.
+Hold the confirmed slug and requirements summary in context -- they are written to `prd.md` after the scaffold in Step 2.
 
 ---
 
-## Step 1: Scaffold
+## Step 1: Project Config Review
+
+Read `.claude/my-project-config.md`. Extract and display only the three consumer-configurable sections — **Tech stack**, **GitHub issue labels**, and **Brand guidelines** — stripping the `@.claude/framework-config.md` import line and any HTML comments. Present them as a clean block with this prefix:
+
+> "These are the three things you can configure in `.claude/my-project-config.md`. Edit the file directly if anything needs changing, then confirm below."
+
+Then use `AskUserQuestion` (single-select):
+
+> "Does your project config look right?"
+
+Options:
+- **Looks good, continue**
+- **I need to make changes**
+
+If the user selects "I need to make changes": wait, then use `AskUserQuestion` again:
+
+> "Ready to continue?"
+
+Options: **Yes, continue** / **Still making changes**
+
+Repeat until the user confirms.
+
+---
+
+## Step 2: Scaffold
 
 Run `bash .claude/skills/feature-init/feature-init.sh YYYYMMDD-[confirmed-slug]` using Bash. IMPORTANT: always use this relative path exactly -- never expand it to an absolute path. Substitute today's date (YYYYMMDD) and the confirmed slug.
 
@@ -81,7 +105,7 @@ Then invoke `/my-git-commit` automatically without asking. Commit subject: `"Sca
 
 ---
 
-## Step 2: Phase Config
+## Step 3: Phase Config
 
 Read `[feature-folder]/workflow/feature-setup.md` to extract all stages and their `👤` gate lines.
 
@@ -152,7 +176,7 @@ Then ask: "Does this look right before we continue?" with options "Yes, continue
 
 ---
 
-## Step 3: Kick off
+## Step 4: Kick off
 
 Ask the user: "Config and requirements are ready. Ready to kick off?" Offer "Yes, proceed" and "Not yet".
 

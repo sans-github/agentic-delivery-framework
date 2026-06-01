@@ -1,6 +1,6 @@
 # Rule: Artifact Path Resolution
 
-All artifact paths must be resolved from the File locations table in `tech-config.md`. This is the single source of truth for where every artifact lives.
+All artifact paths must be resolved from the File locations table in `my-project-config.md`. This is the single source of truth for where every artifact lives.
 
 ## What this means
 
@@ -10,7 +10,7 @@ All artifact paths must be resolved from the File locations table in `tech-confi
 
 ## When a path changes
 
-Update the File locations table in `tech-config.md` first. Then grep the full repo and update all references before committing. A path change without a grep is incomplete.
+Update the File locations table in `framework-config.md` first. Then grep the full repo and update all references before committing. A path change without a grep is incomplete.
 
 ## Applies to
 

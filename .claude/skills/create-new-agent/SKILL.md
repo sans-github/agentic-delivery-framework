@@ -18,7 +18,7 @@ Do not touch any file until the plan is approved.
 
 Invoke the **Plan agent** with the user's intent plus this context:
 
-> Design a plan for adding a new agent to this Claude Code delivery-team repo. The plan must cover: (1) agent file format and section order per CLAUDE.md, (2) which existing skills to reference and which new skills to scaffold inline, (3) which files across the repo need updating (agents, rules, skills/collaboration-contracts, template, tech-config, SETUP-GUIDE, README), (4) the structural verification grep strategy per the CLAUDE.md checklist. The user's intent: [INTENT]
+> Design a plan for adding a new agent to this Claude Code delivery-team repo. The plan must cover: (1) agent file format and section order per CLAUDE.md, (2) which existing skills to reference and which new skills to scaffold inline, (3) which files across the repo need updating (agents, rules, skills/collaboration-contracts, template, my-project-config, framework-config, README), (4) the structural verification grep strategy per the CLAUDE.md checklist. The user's intent: [INTENT]
 
 Present the plan to the user. Iterate with `re-invoke Plan agent with this feedback: [USER_FEEDBACK]` until the user approves.
 
@@ -130,10 +130,10 @@ Work through this list in order. For each file, check whether the new role or sk
 | `.claude/rules/artifact-review-rule.md` | Add any new human-gate artifact to the artifact list and key overview table |
 | `.claude/rules/delegation-rule.md` | Add the new role name to the example role list |
 | `.claude/rules/backlog-reporting-rule.md` | Add the role's Area label (e.g. `Swift`) if not already present |
-| `.claude/tech-config.md` | Add tech stack row; add any new artifact to File locations table; update Mocks row if relevant |
+| `.claude/my-project-config.md` | Add tech stack row if introducing a new layer |
+| `.claude/framework-config.md` | Add any new artifact to File locations table; update Mocks row if relevant |
 | `.claude/template/feature/workflow/feature-setup.md` | Add Detailed Design block, Issues List block, and Development block for the new role in Stage 4; add QA coverage in Stage 5; update Stage 6 if Designer-equivalent |
-| `.claude/SETUP-GUIDE.md` | Add any install-time note specific to this role's skills |
-| `README.md` | Add to agent table and skills mindmap |
+| `README.md` | Add to agent table and skills mindmap; add any install-time note specific to this role's skills under Customizing |
 
 Do not skip a file because it "probably doesn't need updating." Check each one.
 
