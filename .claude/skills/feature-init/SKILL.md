@@ -55,19 +55,9 @@ Hold the confirmed slug and requirements summary in context -- they are written 
 
 ## Step 1: Project Config Review
 
-Read `.claude/my-project-config.md`. Use the requirements summary from Step 0 to inform each question below. Ask all three in sequence.
+Read `.claude/my-project-config.md`. Ask the two questions below in sequence.
 
-**1a. Tech stack**
-
-From the Tech stack table in `my-project-config.md`, identify which layers are relevant given what the user is building. Exclude layers that clearly do not apply (e.g. no macOS layer for a web app, no FE layer for a pure API). Present only the relevant layers as options.
-
-Use `AskUserQuestion` (multi-select):
-
-> "Based on what you described, these are the tech layers that apply. Deselect any you don't need, or leave all selected to confirm."
-
-Options: one per relevant layer (e.g. "BE — Java 21 + Spring Boot", "FE — React 18 + TypeScript", "QA — Playwright"). If the user deselects a layer, note it — this will inform the kickoff prompt's stack selection.
-
-**1b. GitHub issue labels**
+**1a. GitHub issue labels**
 
 Display the label taxonomy from `my-project-config.md` (area, type, priority rows). Use `AskUserQuestion` (single-select):
 
@@ -75,15 +65,20 @@ Display the label taxonomy from `my-project-config.md` (area, type, priority row
 
 Options: **Looks good** / **I need to change them** (if changes needed, tell user to edit `.claude/my-project-config.md` directly, then re-ask).
 
-**1c. Brand guidelines (conditional)**
+**1b. Brand guidelines (conditional)**
 
-Only ask this if the project has a UI component (FE or macOS layer selected in 1a).
+Only ask this if the requirements summary from Step 0 indicates a UI component (web frontend, mobile, or macOS app).
 
 Use `AskUserQuestion` (single-select):
 
-> "A default brand ships with the framework (Off-White + Deep Teal, Plus Jakarta Sans). Do you want to use it or replace it with your own?"
+> "A default brand ships with the framework (Off-White + Deep Teal, Plus Jakarta Sans). Want to preview it, use it as-is, or replace it with your own?"
 
-Options: **Use the default** / **I'll replace it** (if replacing, tell user to update `.claude/skills/brand-guidelines/SKILL.md` before kickoff).
+Options:
+- **Preview it** — run `open .claude/skills/brand-guidelines/previews/default-brand.html` via Bash, then re-ask with only **Use the default** / **I'll replace it**
+- **Use the default**
+- **I'll replace it** — tell user to update `.claude/skills/brand-guidelines/SKILL.md` before kickoff
+
+Note: tech stack selection happens later — EM reviews the full PRD and confirms the stack with you at the start of Stage 3.
 
 ---
 

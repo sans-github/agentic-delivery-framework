@@ -52,7 +52,7 @@ Do not proceed if critical inputs are missing or stale. Surface them and wait fo
 
 **Out of scope:** Explicitly state what is NOT being built, based on the project config and PRD.
 
-**Software stack:** Inspect `src/` to determine whether an existing stack is in place. If a stack exists, confirm it and list the key technologies per layer. If no stack exists, select the minimum subset from the Tech stack section of `my-project-config.md` that covers the project requirements per layer -- do not default to the full list. Choosing a lighter option already on the list does not require Arch approval. Arch approval is required only when adopting an unlisted technology -- surface the concern regardless. If anything in the PRD cannot be addressed with the current or selected stack, flag it explicitly. Flag any mismatch between stack weight and project scope: what is too broad, unnecessary, missing, or potentially wrong; why it is a concern; and a concrete alternative with rationale (e.g. "consider Zustand instead of Redux Toolkit for a single-page app with no complex shared state"). Prefer proven, widely adopted libraries. Prefer the smallest stack that covers the requirements. Do not silently confirm if the scope is small or any layer looks mismatched. Source code output goes directly under `src/` (e.g. `src/backend/`, `src/frontend/`, `src/db/`). Never create a feature-named subfolder under `src/`. Feature names belong only under `projects/`.
+**Software stack:** Inspect `src/` to determine whether an existing stack is in place. If a stack exists, note it here. If no stack exists, note that EM will select and confirm the stack with the human at the start of Stage 3, after the full PRD is available. Flag anything in the requirements that looks unlikely to be addressable with the available layers in `my-project-config.md` — surface it as a risk for the human to resolve before Stage 3.
 
 ### 2. Open questions
 
@@ -102,7 +102,15 @@ Do not begin any work until I have reviewed and approved the kickoff plan.
 
    EM does not proceed past this point until PM signals Stage 2 complete.
 
-4. Resume at Stage 3: when PM signals Stage 2 complete, read `delivery-tracker.md` and continue execution from the first unchecked step in Stage 3 to the end of the tracker.
+4. Resume at Stage 3: when PM signals Stage 2 complete, read the full PRD at `[feature-folder]/product-specs/prd.md`. Select the minimum tech stack subset from the Tech stack table in `my-project-config.md` that covers the requirements -- do not default to the full list. Prefer the smallest stack that addresses the scope. Flag any mismatch (e.g. Redux Toolkit for a single-page app with no shared state) with a concrete alternative and rationale.
+
+   Present the selected layers to the human using `AskUserQuestion` (multi-select):
+
+   > "Based on the PRD, here is the tech stack EM recommends for this feature. Deselect any layer you don't need, or confirm as-is."
+
+   Options: one per selected layer (e.g. "BE — Java 21 + Spring Boot", "FE — React 18 + TypeScript", "QA — Playwright"). If the human deselects a layer or requests a change, revise and re-ask until confirmed. If an unlisted technology is requested, flag that Arch approval is required before proceeding.
+
+   Once the stack is confirmed, read `delivery-tracker.md` and continue execution from the first unchecked step in Stage 3.
 
 ### Execution rules
 
