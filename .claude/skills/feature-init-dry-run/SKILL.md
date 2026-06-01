@@ -17,9 +17,22 @@ Use `AskUserQuestion` (single-select): "Ready to start the dry run?" -- options:
 
 ---
 
-## Step 1: Run feature-init with dry-run rules
+## Step 1: Stub requirements and run feature-init
 
-Invoke `/feature-init` normally. After it hands off to the kickoff prompt, prepend the following block to every agent invoked for the rest of the workflow:
+Requirements gathering is not what a dry run tests. Synthesize a minimal stub inline — do not invoke the PM agent:
+
+```
+Summary: A generic feature for testing workflow wiring end to end.
+Key points:
+  - Users can perform the core action
+  - Data is persisted and retrievable
+  - Basic validation is enforced
+Slug: dry-run-feature
+```
+
+Feed this directly into `/feature-init` as if the user had chosen Path B with the above text already pasted. Use the slug `dry-run-feature` (no date prefix at this stage — feature-init will prepend today's date during scaffold). Skip the PM interview entirely.
+
+From this point forward, prepend the following block to every agent invoked for the rest of the workflow:
 
 ---
 
