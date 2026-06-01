@@ -41,6 +41,19 @@ Extract the slug suggestion.
 
 Ask the user to paste the PRD content or provide a file path. If a file path is given, read the file. Derive a 2-3 word kebab-case slug from the PRD title or first heading. No PM agent invocation needed.
 
+After collecting the PRD, ask:
+
+> "Do you also have existing design artifacts (mocks) or a high-level design (HLD)?"
+
+Options: **Yes, I have mocks** / **Yes, I have an HLD** / **Yes, both** / **No, just the PRD**
+
+For each artifact the user says they have, ask for the file path or folder path. Then validate the path is accessible before proceeding:
+
+- If the file or folder exists: confirm it and hold the resolved path in context.
+- If it cannot be located, respond with: "I couldn't find a file at [path]. Please check the path and try again, or skip this artifact." Do not proceed past this step until all provided paths are confirmed accessible.
+
+Hold in context: which artifacts were provided and their resolved paths. This drives stage skipping in Step 2.
+
 ### Confirm the slug
 
 After any path, present the slug suggestion to the user using `AskUserQuestion`:
@@ -114,25 +127,60 @@ Show the user the folder tree from the script output. Extract the feature folder
 
 - **Path C (full PRD provided):** Write the full PRD content directly to `[feature-folder]/product-specs/prd.md` (no frontmatter wrapper).
 
+**Copy provided artifacts (Path C only):**
+
+If the user provided artifacts in Step 0, copy them to their canonical locations now:
+
+| Artifact | Destination |
+|---|---|
+| PRD (file) | `[feature-folder]/product-specs/prd.md` (overwrite the stub already written above) |
+| Mocks (file or folder) | `[feature-folder]/generated-docs/design/` |
+| HLD (file) | `[feature-folder]/generated-docs/architecture/hld.md` |
+
+If a provided artifact is a folder, copy all contents into the destination. If Claude cannot read the format (e.g. Figma URL, unsupported binary), tell the user and ask them to export to a supported format before continuing.
+
+**Special case — HLD provided without mocks:** Save the HLD to its canonical path, then ask:
+
+> "You provided an HLD but no mocks. Do you have mocks to go with it?"
+
+If yes: collect the mocks path, validate it, and proceed with all three artifacts in context. If no: inform the user that Design will run to produce mocks, and that EM will then validate the provided HLD against those mocks before Stage 3 can proceed. Continue with PRD-only skip rules below.
+
+**Mark skipped stages in `[feature-folder]/workflow/feature-setup.md`:**
+
+Apply these rules based on which artifacts were provided:
+
+| Artifacts provided | What gets marked `[-]` |
+|---|---|
+| PRD only | Stage 1 whole block |
+| PRD + mocks | Stage 1 whole block; Stage 2 whole block |
+| PRD + mocks + HLD | Stage 1; Stage 2; Stage 3 > Engineering Kickoff whole block; Stage 3 > System Architecture whole block; Stage 3 > High-Level Design > `EM: produce high-level design` step only (parent group stays `[ ]`; EM-DevOps loop and `👤 HUMAN: review` stay `[ ]`) |
+
+If Engineering Kickoff is marked `[-]`, check whether `BACKLOG.md` exists at the repo root. If it does not, create it using the format in `backlog-reporting-rule.md`.
+
+After all writes, confirm the changes with a brief summary to the user.
+
 Then invoke `/my-git-commit` automatically without asking. Commit subject: `"Scaffold [feature-name] feature folder"` where `[feature-name]` is the `YYYYMMDD-feature-name` portion of the folder path.
 
 ---
 
 ## Step 3: Phase Config
 
-Read `[feature-folder]/workflow/feature-setup.md` to extract all stages and their `👤` gate lines.
+Read `[feature-folder]/workflow/feature-setup.md` to identify which stages are currently active (`[ ]`) and which are already skipped (`[-]`) from Step 2 artifact rules. Collect all `👤` gate lines from active stages.
 
-Identify skippable stages: all stages currently marked `[ ]` except Stages 6, 7, and 8 (those are locked and always active).
+**Orientation (output before any question):**
 
-**2a. Stage selection**
+```
+Your feature runs through up to 8 stages. Stages 6, 7, and 8 always run
+(master baseline update, documentation, and release).
+[If any stages were skipped in Step 2: "Stages X and Y have been automatically
+skipped based on the artifacts you provided."]
 
-Use `AskUserQuestion` (multi-select):
+Below are the human approval gates remaining in your workflow — these are
+the moments where Claude stops and waits for your explicit sign-off.
+All are on by default. Uncheck any you want to bypass.
+```
 
-> "Which stages would you like to skip? Stages 6, 7, and 8 are always included."
-
-Options: one per skippable stage, using its stage label (e.g. "Stage 1: Discovery"). If there are more than 4 skippable stages, split into two sequential questions covering the full list. If the user selects nothing, all stages remain active.
-
-**2b. Deployment target**
+**Deployment target**
 
 Use `AskUserQuestion` (single-select):
 
@@ -140,19 +188,51 @@ Use `AskUserQuestion` (single-select):
 
 Options: **Local** / **AWS** / **Other** (user types custom value via Other).
 
-**2c. Gate-level config (conditional)**
+**Gate config — three grouped calls**
 
-If any active stage has two or more `👤` checkpoint lines, use `AskUserQuestion` (multi-select) to ask which individual gates to skip:
+**Call 1 — "Discovery and design gates"** (skip this call entirely if both Stage 1 and Stage 2 are `[-]`)
 
-> "Are there any specific review gates you want to skip?"
+Use `AskUserQuestion` (multi-select):
 
-Options: one per `👤` checkpoint across all active stages, labelled in plain English (strip "HUMAN:", e.g. "Review and approve the PRD"). If every active stage has at most one gate, skip this question.
+> "Discovery and design review gates — uncheck any to bypass:"
+
+Options (include only if the corresponding stage is active):
+- Approve PRD
+- Approve mocks
+
+All options pre-checked.
+
+**Call 2 — "Technical planning gates"** (skip this call entirely if all Stage 3 gate steps are `[-]`)
+
+Use `AskUserQuestion` (multi-select):
+
+> "Technical planning review gates — uncheck any to bypass:"
+
+Options (include only if the corresponding step is active):
+- Approve system architecture
+- Approve high-level design
+- Approve implementation plan
+
+All options pre-checked.
+
+**Call 3 — "Engineering and wrap-up gates"**
+
+Use `AskUserQuestion` (multi-select):
+
+> "Engineering and wrap-up review gates — uncheck any to bypass:"
+
+Options:
+- Approve deployment plan (include only if the Infrastructure step in Stage 4 is active)
+- Confirm master baseline is current
+- Approve README and CLAUDE.md
+- Approve release readiness
+
+All options pre-checked.
 
 **Apply the selections**
 
 Update `[feature-folder]/workflow/feature-setup.md`:
-- For each skipped stage: change its `[ ]` to `[-]`
-- For each skipped gate: find the matching `👤` step line within its stage and change its `[ ]` to `[-]`
+- For each unchecked gate: find the matching `👤` step line within its stage and change its `[ ]` to `[-]`
 - Replace the `local` default in the `## Deployment target` block with the user's choice
 
 Print a plain-language summary with consistent alignment:
@@ -185,7 +265,7 @@ Deployment target: local
 
 Use `[ active ]` for `[ ]` items and `[ skipped ]` for `[-]` items. Only show checkpoint rows for active stages.
 
-Then ask: "Does this look right before we continue?" with options "Yes, continue" and "No, reconfigure". If reconfigure, repeat from 2a until the user confirms.
+Then ask: "Does this look right before we continue?" with options "Yes, continue" and "No, reconfigure". If reconfigure, repeat from deployment target question until the user confirms.
 
 ---
 

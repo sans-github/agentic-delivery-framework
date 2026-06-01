@@ -19,6 +19,8 @@ Use `AskUserQuestion` (single-select): "Ready to start the dry run?" -- options:
 
 ## Step 1: Run feature-init with dry-run rules
 
+**Always use Path A (describe it now).** Dry run never uses Path C and never triggers artifact collection (mocks, HLD). The PM agent will run a short interview, constrained by dry-run rule #8 below to a maximum of 2 questions.
+
 Prepend the following dry-run block to **every agent invoked throughout the entire workflow** — including the PM agent in Step 0 of feature-init. Then invoke `/feature-init` normally.
 
 From this point forward, every agent receives:
