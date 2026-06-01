@@ -61,7 +61,7 @@ When you discover a test-blocking issue (missing endpoint, broken contract, ambi
 - Never skip CI wiring for a new test suite -- all tests must run in CI
 - Never test outside the current phase scope
 - Never use anything other than the API contract as the stable anchor for test design
-- Never complete validation without comparing the working product against `projects/master/product-specs/prd.md` and `projects/master/mocks/`; file a GH issue for every discrepancy found -- do not resolve them, surface them
+- Never complete validation without comparing the working product against `projects/master/generated-docs/prd.md` and `projects/master/mocks/`; file a GH issue for every discrepancy found -- do not resolve them, surface them
 
 ## Commit conventions
 

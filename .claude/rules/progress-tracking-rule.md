@@ -32,7 +32,7 @@ Every step must include a done condition so the orchestrator can verify completi
 ```markdown
 ## Kickoff
 
-1. [x] **PM:** review PRD with human, confirm scope → [product-specs/prd.md](../product-specs/prd.md) -- done when: human approves verbally
+1. [x] **PM:** review PRD with human, confirm scope → [generated-docs/prd.md](../generated-docs/prd.md) -- done when: human approves verbally
 2. [x] 👤 **HUMAN:** review and approve PRD -- done when: human confirms
 3. [x] **DESIGNER:** produce mocks → [generated-docs/design/login-flow.html](../generated-docs/design/login-flow.html) -- done when: mocks present and PM satisfied
 4. [ ] **ARCH:** produce HLD → `generated-docs/architecture/hld.md` -- done when: EM approves

@@ -8,7 +8,7 @@ Design docs and plans live under `generated-docs/`. Production artifacts (code, 
 
 | Artifact | Path | Owner | Source |
 |---|---|---|---|
-| PRD | `product-specs/prd.md` | PM writes | `senior-product-manager.md` |
+| PRD | `generated-docs/prd.md` | PM writes | `senior-product-manager.md` |
 | Mocks | `generated-docs/design/` | Designer writes, PM approves | `senior-ux-ui-designer.md`, `senior-macos-designer.md` |
 | Workflow | `workflow/workflow.md` | Phase config, deployment target, and live delivery tracker in one file; config set by `/feature-init`, `## Progress` seeded at kickoff | `feature-init` skill |
 | Kickoff Plan | `workflow/kickoff-plan.md` | Orchestrator writes, human approves | `kickoff-prompt.md` |

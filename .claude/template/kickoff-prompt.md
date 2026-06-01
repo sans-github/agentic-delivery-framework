@@ -12,7 +12,7 @@ Read these before doing anything:
 2. `.claude/agents-guide.md` -- agent team orientation, collaboration model, rules. The project config overrides where they differ.
 3. `.claude/my-project-config.md` -- file locations, naming conventions, tooling choices.
 4. `[feature-folder]/workflow/workflow.md` -- active stages, skipped phases, deployment target; the `## Progress` section is the live delivery tracker.
-5. `[feature-folder]/product-specs/prd.md` -- the feature PRD.
+5. `[feature-folder]/generated-docs/prd.md` -- the feature PRD.
 
 Never hardcode artifact paths. Resolve all artifact paths by looking up the artifact name in the File locations table in `my-project-config.md`.
 
@@ -33,7 +33,7 @@ Start with a one-paragraph big picture: what will be built and how the pieces fi
 
 **Folder structure check:** Verify the feature folder contains:
 - `[feature-folder]/workflow/workflow.md`
-- `[feature-folder]/product-specs/prd.md`
+- `[feature-folder]/generated-docs/prd.md`
 - `[feature-folder]/generated-docs/design/`
 
 If any are missing, stop and tell the human exactly what is missing.
@@ -102,7 +102,7 @@ Do not begin any work until I have reviewed and approved the kickoff plan.
 
    EM does not proceed past this point until PM signals Stage 2 complete.
 
-4. Resume at Stage 3: when PM signals Stage 2 complete, read the full PRD at `[feature-folder]/product-specs/prd.md`. Select the minimum tech stack subset from the Tech stack table in `my-project-config.md` that covers the requirements -- do not default to the full list. Prefer the smallest stack that addresses the scope. Flag any mismatch (e.g. Redux Toolkit for a single-page app with no shared state) with a concrete alternative and rationale.
+4. Resume at Stage 3: when PM signals Stage 2 complete, read the full PRD at `[feature-folder]/generated-docs/prd.md`. Select the minimum tech stack subset from the Tech stack table in `my-project-config.md` that covers the requirements -- do not default to the full list. Prefer the smallest stack that addresses the scope. Flag any mismatch (e.g. Redux Toolkit for a single-page app with no shared state) with a concrete alternative and rationale.
 
    Present the selected layers to the human using `AskUserQuestion` (multi-select):
 

@@ -146,7 +146,7 @@ Toggle rules:
 
 > Always `[ ]` -- this stage is never skippable. Runs after Stage 5 sign-off and must complete before any new feature can begin.
 
-- [ ] **PM:** merge this feature's PRD into `projects/master/product-specs/prd.md`
+- [ ] **PM:** merge this feature's PRD into `projects/master/generated-docs/prd.md`
   - If master PRD exists: consolidate -- add new sections, update changed sections, do not duplicate
   - If master PRD is empty: copy feature PRD as-is
   - done when: master PRD reflects all shipped features including this one
@@ -206,7 +206,7 @@ Include anything that should inform the `## Progress` tracker -- handwritten not
 
 ```
 # Example:
-- See product-specs/whiteboard-sketch.jpg for a rough flow diagram
+- See generated-docs/whiteboard-sketch.jpg for a rough flow diagram
 - The team discussed keeping the data model flat -- avoid joins where possible
 - The PM has a strong preference for shipping Phase 1 without auth; add auth in Phase 2
 ```

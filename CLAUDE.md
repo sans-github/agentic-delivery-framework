@@ -26,10 +26,10 @@ Consumers install this repo into their own project via `install.sh`. They do not
 │   │   ├── generated-docs/architecture/  -- sys-arch, HLD
 │   │   ├── generated-docs/contracts/     -- API contract
 │   │   ├── generated-docs/qa/            -- test plan
-│   │   ├── product-specs/prd.md          -- PM input (feature PRD)
+│   │   ├── generated-docs/prd.md          -- PM input (feature PRD)
 │   │   └── workflow/                     -- delivery config and plans
 │   ├── master/       -- copied once to projects/master/ (shared product baseline)
-│   │   ├── product-specs/prd.md    -- full PRD merged across all shipped features
+│   │   ├── generated-docs/prd.md    -- full PRD merged across all shipped features
 │   │   └── mocks/                  -- current UI mocks reflecting live product
 │   └── kickoff-prompt.md                  -- kickoff prompt (stays at template root, not copied per feature)
 ├── my-project-config.md     -- consumer-facing config: Tech stack and GitHub labels; imports framework-config.md
@@ -39,9 +39,9 @@ src/                  -- all production artifacts: source code, db schema, migra
 ```
 
 Key distinctions:
-- `product-specs/` is PM input (what to build). `generated-docs/` is Designer output (what was produced). Never mix them.
+- `generated-docs/` holds all agent-produced artifacts: PRD, mocks, architecture, contracts, QA docs.
 - `template/feature/` contains things that become part of a feature folder. Kickoff files are one-time prompts, so they stay at `template/` root.
-- `master/` is a shared baseline, not per-feature. It mirrors the `feature/` structure (product-specs, mocks) but is copied once, not per feature.
+- `master/` is a shared baseline, not per-feature. It mirrors the `feature/` structure (generated-docs, mocks) but is copied once, not per feature.
 - `generated-docs/` is organized by concern: `design/` (mocks), `architecture/` (sys-arch, HLD), `contracts/` (API contract), `qa/` (test plan).
 - `src/` is a sibling to `.claude/`, `projects/`, and `scripts/` at the consumer project root. All production artifacts go here (source code, db schema, migrations, seeds, IaC). Agent-generated design docs go under `generated-docs/`, never under `src/`.
 
@@ -62,7 +62,7 @@ Rules in `.claude/rules/` are loaded automatically. Key ones to know:
 ## What NOT to do
 
 - Do not add application code, project-specific content, or anything that assumes a particular consumer project.
-- Do not create new folders without understanding where they fit in the input/output separation (product-specs vs generated-docs, feature vs master).
+- Do not create new folders without understanding where they fit in the artifact hierarchy (generated-docs vs workflow vs src).
 - Do not rename or restructure without grepping the full repo for references and updating all of them.
 - Do not commit without the user explicitly asking.
 

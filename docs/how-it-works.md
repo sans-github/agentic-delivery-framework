@@ -107,7 +107,7 @@ Rules in `.claude/rules/` are loaded by Claude Code for every session. You do no
 projects/
 ├── master/           consolidated product baseline (PRD + mocks, updated after every shipped feature)
 └── YYYYMMDD-name/    per-feature folder (scaffolded by /feature-init)
-    ├── product-specs/       PM input: PRD
+    ├── generated-docs/       PM input: PRD
     ├── generated-docs/      all design and planning output
     │   ├── design/          mocks and diagrams
     │   ├── architecture/    system architecture, HLD
@@ -126,7 +126,7 @@ After QA automation is approved, three mandatory stages run before any new featu
 
 | Stage | Who | What |
 |-------|-----|------|
-| 6: Master Baseline Update | PM, Designer | PM merges the feature PRD into `projects/master/product-specs/prd.md`. Designer merges mocks into `projects/master/mocks/`. Human confirms master is current. |
+| 6: Master Baseline Update | PM, Designer | PM merges the feature PRD into `projects/master/generated-docs/prd.md`. Designer merges mocks into `projects/master/mocks/`. Human confirms master is current. |
 | 7: Documentation | EM | EM generates `scripts/dev.sh` from the actual `src/` structure, then runs `/document-release` to update `README.md` and `CLAUDE.md`. Human approves. |
 | 8: Release Sign-off | EM, Human | EM verifies all artifacts are complete and approved. Human approves release readiness. |
 

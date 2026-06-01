@@ -110,7 +110,7 @@ Show the user the folder tree from the script output. Extract the feature folder
 
 **Write requirements to `prd.md`:**
 
-- **Paths A or B:** Write the requirements frontmatter block to `[feature-folder]/product-specs/prd.md`:
+- **Paths A or B:** Write the requirements frontmatter block to `[feature-folder]/generated-docs/prd.md`:
 
   ```
   ---
@@ -124,7 +124,7 @@ Show the user the folder tree from the script output. Extract the feature folder
   ---
   ```
 
-- **Path C (full PRD provided):** Write the full PRD content directly to `[feature-folder]/product-specs/prd.md` (no frontmatter wrapper).
+- **Path C (full PRD provided):** Write the full PRD content directly to `[feature-folder]/generated-docs/prd.md` (no frontmatter wrapper).
 
 **Copy provided artifacts (Path C only):**
 
@@ -132,7 +132,7 @@ If the user provided artifacts in Step 0, copy them to their canonical locations
 
 | Artifact | Destination |
 |---|---|
-| PRD (file) | `[feature-folder]/product-specs/prd.md` (overwrite the stub already written above) |
+| PRD (file) | `[feature-folder]/generated-docs/prd.md` (overwrite the stub already written above) |
 | Mocks (file or folder) | `[feature-folder]/generated-docs/design/` |
 | HLD (file) | `[feature-folder]/generated-docs/architecture/hld.md` |
 
