@@ -190,38 +190,38 @@ Options: **Local** / **AWS** (user types a custom target via the free-text Other
 
 Each call is multi-select. Options start unchecked. Checking an option means skipping that gate. If the user checks nothing, all gates in that group remain active.
 
-**Call 1 — "Discovery and design gates"** (skip this call entirely if both Stage 1 and Stage 2 are `[-]`)
+**Call 1 — Discovery and design** (skip this call entirely if both Stage 1 and Stage 2 are `[-]`)
 
 Use `AskUserQuestion` (multi-select):
 
-> "Discovery and design gates — check any to skip:"
+> "Which approval gates do you want to skip?"
 
-Options (include only if the corresponding stage is active):
-- Skip PRD approval
-- Skip mocks approval
+Options (include only if the corresponding stage is active; no description lines):
+- PRD approval (human review)
+- Mocks approval (human review)
 
-**Call 2 — "Technical planning gates"** (skip this call entirely if all Stage 3 gate steps are `[-]`)
-
-Use `AskUserQuestion` (multi-select):
-
-> "Technical planning gates — check any to skip:"
-
-Options (include only if the corresponding step is active):
-- Skip system architecture approval
-- Skip high-level design approval
-- Skip implementation plan approval
-
-**Call 3 — "Engineering and wrap-up gates"**
+**Call 2 — Technical planning** (skip this call entirely if all Stage 3 gate steps are `[-]`)
 
 Use `AskUserQuestion` (multi-select):
 
-> "Engineering and wrap-up gates — check any to skip:"
+> "Which approval gates do you want to skip?"
 
-Options:
-- Skip deployment plan approval (include only if the Infrastructure step in Stage 4 is active)
-- Skip master baseline confirmation
-- Skip README and CLAUDE.md approval
-- Skip release readiness approval
+Options (include only if the corresponding step is active; no description lines):
+- System architecture approval (human review)
+- High-level design approval (human review)
+- Implementation plan approval (human review)
+
+**Call 3 — Engineering and wrap-up**
+
+Use `AskUserQuestion` (multi-select):
+
+> "Which approval gates do you want to skip?"
+
+Options (no description lines):
+- Deployment plan approval (human review) — include only if the Infrastructure step in Stage 4 is active
+- Master baseline confirmation (human review)
+- README and CLAUDE.md approval (human review)
+- Release readiness approval (human review)
 
 **Apply the selections**
 
