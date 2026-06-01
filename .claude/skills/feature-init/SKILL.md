@@ -188,7 +188,7 @@ Options: **Local** / **AWS** (user types a custom target via the free-text Other
 
 **Gate config — three grouped calls**
 
-Each call is multi-select. Options start unchecked. Checking an option means skipping that gate. If the user checks nothing, all gates in that group remain active.
+Each call is multi-select. Options start unchecked. Checking an option means skipping that gate. If the user checks nothing, all gates in that group remain active. **Each option is a label only — no description field, no stage reference, no explanatory text.**
 
 **Call 1 — Discovery and design** (skip this call entirely if both Stage 1 and Stage 2 are `[-]`)
 
