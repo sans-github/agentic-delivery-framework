@@ -55,25 +55,35 @@ Hold the confirmed slug and requirements summary in context -- they are written 
 
 ## Step 1: Project Config Review
 
-Read `.claude/my-project-config.md`. Extract and display only the three consumer-configurable sections — **Tech stack**, **GitHub issue labels**, and **Brand guidelines** — stripping the `@.claude/framework-config.md` import line and any HTML comments. Present them as a clean block with this prefix:
+Read `.claude/my-project-config.md`. Use the requirements summary from Step 0 to inform each question below. Ask all three in sequence.
 
-> "These are the three things you can configure in `.claude/my-project-config.md`. Edit the file directly if anything needs changing, then confirm below."
+**1a. Tech stack**
 
-Then use `AskUserQuestion` (single-select):
+From the Tech stack table in `my-project-config.md`, identify which layers are relevant given what the user is building. Exclude layers that clearly do not apply (e.g. no macOS layer for a web app, no FE layer for a pure API). Present only the relevant layers as options.
 
-> "Does your project config look right?"
+Use `AskUserQuestion` (multi-select):
 
-Options:
-- **Looks good, continue**
-- **I need to make changes**
+> "Based on what you described, these are the tech layers that apply. Deselect any you don't need, or leave all selected to confirm."
 
-If the user selects "I need to make changes": wait, then use `AskUserQuestion` again:
+Options: one per relevant layer (e.g. "BE — Java 21 + Spring Boot", "FE — React 18 + TypeScript", "QA — Playwright"). If the user deselects a layer, note it — this will inform the kickoff prompt's stack selection.
 
-> "Ready to continue?"
+**1b. GitHub issue labels**
 
-Options: **Yes, continue** / **Still making changes**
+Display the label taxonomy from `my-project-config.md` (area, type, priority rows). Use `AskUserQuestion` (single-select):
 
-Repeat until the user confirms.
+> "These are the GitHub issue labels that will be used across the project. Do they look right?"
+
+Options: **Looks good** / **I need to change them** (if changes needed, tell user to edit `.claude/my-project-config.md` directly, then re-ask).
+
+**1c. Brand guidelines (conditional)**
+
+Only ask this if the project has a UI component (FE or macOS layer selected in 1a).
+
+Use `AskUserQuestion` (single-select):
+
+> "A default brand ships with the framework (Off-White + Deep Teal, Plus Jakarta Sans). Do you want to use it or replace it with your own?"
+
+Options: **Use the default** / **I'll replace it** (if replacing, tell user to update `.claude/skills/brand-guidelines/SKILL.md` before kickoff).
 
 ---
 
