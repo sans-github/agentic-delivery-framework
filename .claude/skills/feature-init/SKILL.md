@@ -185,7 +185,7 @@ Use `AskUserQuestion` (single-select):
 
 > "What is your deployment target?"
 
-Options: **Local** / **AWS** / **Other** (user types custom value via Other).
+Options: **Local** / **AWS** (user types a custom target via the free-text Other field).
 
 **Gate config — three grouped calls**
 
