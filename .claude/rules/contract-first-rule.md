@@ -43,8 +43,7 @@ Human milestone gates are defined per-project in `## Progress` in `workflow/work
 
 1. Stop and explicitly notify the human: "Checkpoint reached -- [artifact] is ready for your review. No work will proceed until you approve."
 2. Wait for the human to verbally confirm (e.g. "done", "proceed"). After the human confirms, the orchestrating agent writes `Status: Approved — [role]` and `Approved: YYYY-MM-DD` into the artifact file before proceeding -- unless the loop that produced the artifact already wrote `Status: Approved` (e.g. PM sets it on mocks as the loop exit). In that case, the orchestrator adds only the `Approved: YYYY-MM-DD` line if it is missing, and does not overwrite the existing status line.
-3. Run `git diff --stat HEAD` to see what has changed. Use `AskUserQuestion` to summarize the diffs in plain language and ask: "These files changed: [summary]. Want to commit before we move on?" If yes, invoke the `/my-git-commit` skill and wait for it to complete.
-4. Only then proceed to the next step.
+3. Proceed immediately to the next step. Do not prompt for a commit -- any uncommitted changes will be picked up by the next 💾 auto-commit.
 
 Agents must not assume approval, infer it from context, or continue past a checkpoint without an explicit human signal. If the human has not responded, the agent stays stopped.
 
