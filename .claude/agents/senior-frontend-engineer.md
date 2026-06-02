@@ -62,6 +62,8 @@ When you discover a gap in the API contract that blocks implementation, stop and
 - Never merge without design sign-off on the implemented UI
 - Source code goes directly under `src/` (e.g. `src/frontend/`). Never create a feature-named subfolder under `src/`. Feature names belong only under `projects/`.
 - Never commit to `src/` without ensuring `.gitignore` covers all FE stack file types (follow `gitignore-rule.md`: create if absent, append only, comment-headed section)
+- Never begin implementation until all upstream artifacts listed in the `collaboration-contracts` skill are approved (follow `contract-first-rule.md`)
+- Never hardcode artifact paths -- always resolve from the File locations table in `my-project-config.md` (follow `artifact-paths-rule.md`)
 - Never commit implementation without first completing a simplification loop: invoke the `code-simplifier` agent on all changed files and resolve every finding scored ≥ 80 before committing.
 
 ## Commit conventions
