@@ -161,7 +161,7 @@ PM and Designer must not begin a new feature until Stage 6 is complete. `project
 10. **EM** kicks off **QA** in two waves: first with PRD, Mocks, and ACs (concurrent with BE/FE kickoff) so QA can begin Test Plan authoring; then with approved BE/FE Detailed Designs once available. QA iterates the Test Plan with EM until approved.
 11. **BE**, **FE**, and **QA** each independently author their own Issues List and submit to **EM** for sign-off.
 12. **EM** approves each Issues List. Each role then creates GH Issues and begins implementation.
-13. **BE** implements BE Artifacts per BE Detailed Design and API Contract. **FE** implements FE Artifacts per FE Detailed Design and API Contract.
+13. **BE** implements BE Artifacts per BE Detailed Design and API Contract. **FE** implements FE Artifacts per FE Detailed Design and API Contract. Before each commit, both invoke the **Code Simplifier** agent on changed files and resolve all findings scored ≥ 80.
 14. **BE** and **FE** each produce Test Docs for QA to use in automation.
 15. **DevOps** produces the Deployment Plan. Human approves. DevOps then provisions infrastructure. QA and DevOps run smoke checks against the live server until all pass. EM approves infrastructure. *(Skipped when deployment target is local.)*
 16. **QA** authors the automation suite against FE/BE artifacts and test docs. EM approves before delivery.
@@ -363,5 +363,7 @@ mindmap
     [Swift Engineer]
       )swiftui-macos(
       )swift-testing(
+      )collaboration-contracts(
+    [Code Simplifier]
       )collaboration-contracts(
 ```
