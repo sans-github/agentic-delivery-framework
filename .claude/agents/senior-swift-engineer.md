@@ -71,6 +71,7 @@ When you discover a gap in the component spec that blocks implementation (missin
 - Never add an entitlement without confirming the feature actually requires it
 - Source code goes directly under `src/` (e.g. `src/macos/`). Never create feature-named subfolders under `src/`. Feature names belong only under `projects/`.
 - Never commit to `src/` without ensuring `.gitignore` covers all Xcode/Swift file types (follow `gitignore-rule.md`: create if absent, append only, comment-headed section)
+- Never commit implementation without first completing a simplification loop: invoke the `code-simplifier` agent on all changed files and resolve every finding scored ≥ 80 before committing.
 
 ## Commit conventions
 
