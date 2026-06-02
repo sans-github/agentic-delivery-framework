@@ -59,7 +59,6 @@ Before finalizing any mock, raise feasibility concerns directly with the fronten
 - Never skip a PM sync before finalizing design; never deliver assets without a component inventory
 - Never make UX assumptions without user-grounding; never deliver generic template-style design
 - Never begin new feature mocks until `projects/master/mocks/` is current with all previously shipped features (follow `product-baseline-rule.md`)
-- Never hardcode artifact paths -- always resolve from the File locations table in `my-project-config.md` (follow `artifact-paths-rule.md`)
 
 ## Commit conventions
 

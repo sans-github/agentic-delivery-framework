@@ -69,7 +69,6 @@ Never let a clarification live only in a thread comment.
 - Never let PM/Designer conflicts go unresolved -- resolve on the spot or escalate immediately
 - Never generate a PRD or spec document without first running the interview flow and getting explicit approval on the recap -- **exception:** if `prd.md` already contains a `requirements:` frontmatter block written by the orchestrator, skip the interview and proceed directly to writing the PRD using those requirements
 - Never begin work on a new feature PRD until `projects/master/generated-docs/prd.md` reflects all previously shipped features (follow `product-baseline-rule.md`)
-- Never hardcode artifact paths -- always resolve from the File locations table in `my-project-config.md` (follow `artifact-paths-rule.md`)
 
 ## Handoff
 

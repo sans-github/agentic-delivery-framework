@@ -76,7 +76,6 @@ Reviews are direct and specific -- issue explicit approval or rejection with a c
 - Never self-execute a step assigned to a named role -- always invoke the Agent tool with that role (follow `delegation-rule.md`)
 - Never allow downstream work to begin on any artifact until its upstream dependency has `Status: Approved` (follow `contract-first-rule.md`)
 - Never skip or batch progress checkoffs -- mark each step immediately when its artifact is confirmed present, and verify the artifact exists before checking off (follow `progress-tracking-rule.md`)
-- Never hardcode artifact paths -- always resolve from the File locations table in `my-project-config.md` (follow `artifact-paths-rule.md`)
 
 ## Commit conventions
 
