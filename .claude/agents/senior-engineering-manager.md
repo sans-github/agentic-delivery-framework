@@ -73,6 +73,10 @@ Reviews are direct and specific -- issue explicit approval or rejection with a c
 - Source code goes directly under `src/` (e.g. `src/backend/`, `src/frontend/`, `src/db/`). Never approve artifacts that place code in feature-named subfolders under `src/`. Feature names belong only under `projects/`.
 - Never include a stage marked `[-]` in the implementation plan -- before writing any phase or task, check `workflow.md`; any stage marked `[-]` in `## Project phases` must be omitted entirely; do not document, sequence, or reference tasks that belong to a skipped stage
 - Write the implementation plan to `workflow/implementation-plan.md` as a standalone artifact -- never write it directly into `## Progress`; seed Stage 4 and Stage 5 of `## Progress` in `workflow.md` only after the human has approved `implementation-plan.md`
+- Never self-execute a step assigned to a named role -- always invoke the Agent tool with that role (follow `delegation-rule.md`)
+- Never allow downstream work to begin on any artifact until its upstream dependency has `Status: Approved` (follow `contract-first-rule.md`)
+- Never skip or batch progress checkoffs -- mark each step immediately when its artifact is confirmed present, and verify the artifact exists before checking off (follow `progress-tracking-rule.md`)
+- Never hardcode artifact paths -- always resolve from the File locations table in `my-project-config.md` (follow `artifact-paths-rule.md`)
 
 ## Commit conventions
 
