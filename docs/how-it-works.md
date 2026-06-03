@@ -30,6 +30,53 @@ Each arrow is a formal contract. Before any agent starts, the artifact it depend
 
 ---
 
+## Phases and artifact ownership
+
+Agents collaborate by exchanging artifacts. The Gatekeeper is the role with final say: they review, raise concerns, and resolve with the owner before downstream work proceeds.
+
+### Discovery
+| Artifact | Owner | Key collaborators | Gatekeeper |
+|---|---|---|---|
+| Reqs | User | PM gathers | |
+| PRD, ACs | PM | EM reviews | PM |
+| Mocks | Designer | PM refines jointly | PM |
+
+### System Design
+| Artifact | Owner | Key collaborators | Gatekeeper |
+|---|---|---|---|
+| Sys Arch | Arch | EM drives, Arch authors | Arch |
+| Eng Plans (HLD) | EM | Arch contributes, FE + BE align | EM |
+
+### Engineering Design
+| Artifact | Owner | Key collaborators | Gatekeeper |
+|---|---|---|---|
+| BE Detailed Design | BE | EM monitors; intercepts and collaborates to resolve on red flag | EM |
+| FE Detailed Design | FE | EM monitors; intercepts and collaborates to resolve on red flag | EM |
+| API Contract | FE + BE | EM monitors; intercepts and collaborates to resolve on red flag | EM |
+
+### Implementation Planning
+| Artifact | Owner | Key collaborators | Gatekeeper |
+|---|---|---|---|
+| Test Plan | QA | EM monitors; intercepts and collaborates to resolve on red flag | EM |
+| Issues List | BE / FE / QA | EM signs off each list | EM |
+
+### Implementation
+| Artifact | Owner | Key collaborators | Gatekeeper |
+|---|---|---|---|
+| CI/CD Pipeline + IaC | DevOps | EM monitors; intercepts and collaborates to resolve on red flag | EM |
+| Deployment Smoke Check | QA | DevOps hands off live URL; QA runs checks; failures loop back to DevOps | EM |
+| BE Artifacts | BE | QA tests, Arch reviews, EM monitors | EM |
+| FE Artifacts | FE | QA tests, EM monitors | EM |
+| BE Test Docs | BE | QA consumes | EM |
+| FE Test Docs | FE | QA consumes | EM |
+
+### Validation
+| Artifact | Owner | Key collaborators | Gatekeeper |
+|---|---|---|---|
+| Automation | QA | EM monitors; intercepts and collaborates to resolve on red flag | EM |
+
+---
+
 ## Human gates
 
 You are never cut out of the loop. At every major milestone, Claude stops, tells you what was produced, and waits for your sign-off before continuing.
