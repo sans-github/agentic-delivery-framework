@@ -1,12 +1,8 @@
 # Claude Code Agents
 
-Give your Claude Code project a full engineering team, not just a single AI assistant.
+This is an AI-assisted software development framework built on Claude Code. It comes with specialized agents that mimic a real scrum team and are designed to deliver reliably through specialization skills embedded in their definitions. These agents operate under predefined rules to enforce engineering and coding conventions, collaborate with each other the way real team members do, and include you in the loop to verify each significant planning phase and guide the workflow.
 
----
-
-Most AI coding tools work in isolation: one model, one task, one answer. Real software delivery doesn't work that way. It takes product thinking, design, architecture, backend, frontend, QA, and someone to coordinate all of it.
-
-This framework gives you all of that, pre-wired and ready to go.
+Used to ship [full-stack web applications](https://github.com/sans-github/fitness-tracker-app) (Java, Spring Boot, React) deployed on AWS with Terraform, and Mac desktop applications.
 
 ---
 
