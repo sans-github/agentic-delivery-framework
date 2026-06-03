@@ -189,7 +189,7 @@ PM and Designer must not begin a new feature until Stage 6 is complete. `project
 | `/feature-init-dry-run` | Full workflow with placeholder output; all gates fire for real |
 | `/fix-gh-issues` | Fetch open GitHub issues and implement fixes |
 | `/create-new-agent` | Add a new agent to this repo with full structural verification |
-| `/cdt-change-prep` | Prime Claude to make accurate, thorough changes to this framework (agents, rules, skills, templates, docs) |
+| `/framework-change-prep` | Prime Claude to make accurate, thorough changes to this framework (agents, rules, skills, templates, docs) |
 
 ---
 

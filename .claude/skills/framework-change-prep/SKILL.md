@@ -1,9 +1,9 @@
 ---
-name: cdt-change-prep
-description: Update agents, rules, skills, templates, or docs in the claude-delivery-team repo. Reads key files in sequence, produces a verification summary, and primes for accurate, thorough changes. Use at the start of any session involving structural or content changes to this framework.
+name: framework-change-prep
+description: Update agents, rules, skills, templates, or docs in the agentic-delivery-framework repo. Reads key files in sequence, produces a verification summary, and primes for accurate, thorough changes. Use at the start of any session involving structural or content changes to this framework.
 ---
 
-# CDT Change Prep
+# Framework Change Prep
 
 This repo is installed by engineering teams at scale. Every agent, rule, skill, and template ships to real production workflows. **Accuracy and depth are non-negotiable. Speed is not a goal.** A single missed reference in a rename, a stale line in the README, or an unreviewed diagram breaks the experience for everyone who depends on it.
 

@@ -8,7 +8,7 @@ Used to ship [full-stack web applications](https://github.com/sans-github/fitnes
 
 ### Install
 
-`bash <(curl -fsSL https://raw.githubusercontent.com/sans-github/claude-delivery-team/main/install.sh)`
+`bash <(curl -fsSL https://raw.githubusercontent.com/sans-github/agentic-delivery-framework/main/install.sh)`
 
 Copies agents, rules, skills, and templates into `.claude/`, and wires up `CLAUDE.md` so Claude Code loads your stack config automatically. Commit the result to lock the version.
 

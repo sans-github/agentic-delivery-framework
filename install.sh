@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="https://github.com/sans-github/claude-delivery-team"
+REPO="https://github.com/sans-github/agentic-delivery-framework"
 REF="${1:-main}"
 # bash <(curl ...) sets BASH_SOURCE[0] to /dev/fd/N — not a real path.
 # curl | bash leaves it empty. Both cases fall back to pwd (consumer's project root).
