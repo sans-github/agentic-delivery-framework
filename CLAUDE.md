@@ -130,10 +130,11 @@ If unsure whether a change qualifies, run the checklist anyway.
    - New agent: e.g. `senior-frontend-engineer`, `senior-backend-engineer`, `senior-ux-ui-designer`
    - New rule: e.g. `contract-first-rule`, `progress-tracking-rule`, `delegation-rule`
    - If no existing equivalent exists: grep for the new name alone and reason about every hit; document the lack of baseline in the response
-3. **Grep from the repo root, no filters.**
+3. **Grep from the repo root, no filters -- then check non-text surfaces.**
    - Run `cd <repo-root>` first (the directory containing `CLAUDE.md` and the `.claude/` folder)
    - Run `grep -irn "<term>" .` for every term from step 1, and for every baseline term from step 2
    - NEVER pipe through `grep -v` to exclude folders. NEVER skip a directory because "it's probably domain-specific." Every hit gets evaluated, not filtered.
+   - **Grep covers text files only.** After grep, manually review these non-text surfaces: `Collaboration.excalidraw` (visual diagram), `docs/how-it-works.md` (user-facing narrative), and `README.md`. Flag any that need updating.
 4. **Compare locations.**
    - For ADDS: every location any baseline appears is a candidate the new name must also appear (or have a deliberate reason not to)
    - For RENAMES: every location the old name appears must be updated to the new name (or deliberately retained for compatibility)
