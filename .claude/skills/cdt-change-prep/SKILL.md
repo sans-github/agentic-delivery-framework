@@ -39,14 +39,11 @@ One representative agent to internalize the mandatory section order all agents f
 
 ---
 
-## Verification summary (produce this before any changes)
+## Confirmation (produce this after reading)
 
-Output the following so the user can confirm your understanding:
+Reply with a single short message confirming you have read all files and are ready to collaborate. No summaries, no lists, no digests. Example:
 
-1. **Agent roster** -- every agent by canonical name and abbreviation (e.g. `senior-backend-engineer` / BE)
-2. **Rule inventory** -- one line per rule describing what it enforces
-3. **Key dependency chains** -- 3-5 representative chains from the collaboration contracts (e.g. "BE Detailed Design approved by EM unblocks BE API implementation")
-4. **Checklist acknowledgment** -- confirm you have internalized the structural-change checklist and the expanded surface check below
+> Read. I have full context on agents, rules, contracts, workflow, and the verification checklist. Ready when you are.
 
 ---
 
