@@ -29,9 +29,7 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:skills.sh)",
-      "WebSearch",
-      "Write(.claude/**)",
-      "Write(agents-core/**)"
+      "WebSearch"
     ]
   }
 }
