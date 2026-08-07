@@ -1,3 +1,4 @@
+
 ---
 name: java-springboot
 description: Spring Boot project structure, dependency injection, configuration, REST layer, JPA, logging, testing, and security conventions. Use when building, reviewing, or making tech stack decisions for a Spring Boot application.
@@ -42,6 +43,48 @@ Your goal is to help me write high-quality Spring Boot applications by following
 - **Statelessness:** Services should be stateless.
 - **Transaction Management:** Use `@Transactional` on service methods to manage database transactions declaratively. Apply it at the most granular level necessary.
 
+## Scheduled Tasks (Quartz)
+
+Use Quartz as the scheduling engine for this stack. It gives persistent jobs that survive restarts, cluster-safe execution (only one node fires a job when running multiple instances), and dynamic scheduling at runtime.
+
+**Note on `@Scheduled`:** Spring's built-in `@Scheduled` (with `@EnableScheduling`) is acceptable only for a trivial, single-instance, fire-and-forget job with no persistence and no risk of double-firing across nodes. The moment a job must survive a restart, must not run twice in a multi-instance deployment, or must be created or rescheduled at runtime, use Quartz. When in doubt, use Quartz -- do not scatter `@Scheduled` methods that will double-fire once the service is scaled out.
+
+### Maven dependency
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-quartz</artifactId>
+</dependency>
+```
+
+### Persistent, clustered JobStore
+
+Configure a JDBC JobStore so jobs and triggers live in the database, not memory. In `application.properties`:
+
+```properties
+spring.quartz.job-store-type=jdbc
+spring.quartz.jdbc.initialize-schema=never
+spring.quartz.properties.org.quartz.jobStore.isClustered=true
+spring.quartz.properties.org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+spring.quartz.properties.org.quartz.scheduler.instanceId=AUTO
+```
+
+`instanceId=AUTO` gives each node a unique id so clustering can coordinate; `isClustered=true` guarantees a job fires on exactly one node per trigger.
+
+**Schema ownership (critical):** Quartz needs its `qrtz_*` tables. Never let Quartz create them -- that is why `initialize-schema=never` is set. Per `db-schema-change-rule.md`, Flyway owns all schema. Take the official Quartz DDL for your database (from the `org.quartz-scheduler:quartz` distribution, `tables_<db>.sql`), commit it as a versioned Flyway script under `src/db/schema/`, and update the ER diagram in the same commit. Use the correct delegate class for non-standard databases (e.g. `PostgreSQLDelegate` for PostgreSQL).
+
+### Defining and registering a job
+
+A job is a `@Component` implementing `Job` with normal constructor injection (the starter wires a Spring-aware job factory). Register it as a durable `JobDetail` bean (`storeDurably()` so it survives with no trigger attached) plus a `Trigger` bean whose cron comes from `@Value("${jobs.<name>.cron}")` (externalized per environment, no redeploy to retime) and sets an explicit misfire instruction such as `withMisfireHandlingInstructionFireAndProceed()`.
+
+Quartz cron has 6 or 7 fields (seconds first, plus optional year); it is not identical to Unix cron. `0 30 3 * * ?` is 3:30 AM daily.
+
+### Idempotency and misfires
+
+- **Idempotent jobs.** A clustered scheduler can fire a job on a node that then dies mid-run; recovery re-runs it. Write every job so a re-run is safe (upserts, `deleteBefore`, dedup keys) -- never assume exactly-once.
+- **Misfire policy.** If the scheduler was down when a trigger should have fired, the misfire instruction decides what happens on recovery. Set it explicitly (as above) rather than relying on the default, so a downtime window does not replay a burst of skipped fires.
+
 ## Data Layer (Repositories)
 
 - **Spring Data JPA:** Use Spring Data JPA repositories by extending `JpaRepository` or `CrudRepository` for standard database operations.
@@ -50,7 +93,7 @@ Your goal is to help me write high-quality Spring Boot applications by following
 
 ## Database migrations
 
-Use Flyway (preferred) or Liquibase. The migration tool owns all schema creation -- Hibernate must never create or modify tables.
+Use Flyway. The migration tool owns all schema creation -- Hibernate must never create or modify tables.
 
 ### Maven dependencies
 
