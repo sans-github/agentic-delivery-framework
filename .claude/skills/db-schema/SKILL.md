@@ -109,6 +109,8 @@ This project uses a split directory layout that most tools do not assume by defa
 
 The migration tool uses the portion before the first separator character as the version key -- so it knows which scripts have already been applied and skips them. File naming examples: `01_users.sql` (version `01`), `20240315143022_add_phone.sql` (version `20240315143022`).
 
+The examples here are tool-agnostic. A stack-specific skill may require a stricter naming (for example, Flyway's default `V<version>__<description>.sql` with a mandatory `V` prefix). When a stack skill defines a naming convention, it takes precedence over these generic examples for that stack.
+
 ---
 
 ## ORM and DDL settings

@@ -123,15 +123,15 @@ Required in every environment (dev, test, prod):
 ```properties
 spring.jpa.hibernate.ddl-auto=validate
 spring.flyway.locations=filesystem:../db/schema,filesystem:../db/seeds/common,filesystem:../db/migrations
-spring.flyway.sql-migration-prefix=
-spring.flyway.sql-migration-separator=_
 spring.flyway.baseline-on-migrate=true
 spring.flyway.baseline-version=0
 ```
 
 `filesystem:../db/...` -- Maven's working directory during `mvn spring-boot:run` is the module root (`src/backend/`), not the repo root. Paths must be relative to `src/backend/`, so `../db/schema` reaches `src/db/schema`. Using `src/db/...` is incorrect and causes Flyway to find no scripts silently, which then causes Hibernate to fail with "missing table" on startup.
 
-`baseline-on-migrate` and `baseline-version` -- required when adding Flyway to an existing database that already has tables but no schema history table. Without them, Flyway refuses to run with "Found non-empty schema but no schema history table". Setting `baseline-version=0` ensures all schema files (version `01`+) are applied on first run.
+`baseline-on-migrate` and `baseline-version` -- required when adding Flyway to an existing database that already has tables but no schema history table. Without them, Flyway refuses to run with "Found non-empty schema but no schema history table". Setting `baseline-version=0` ensures all schema files (version `001`+) are applied on first run.
+
+No `sql-migration-prefix` or `sql-migration-separator` overrides are set, so Flyway uses its standard defaults: prefix `V`, separator `__`.
 
 In `application-dev.properties` (dev/staging only -- never prod):
 
@@ -141,7 +141,15 @@ spring.flyway.locations=filesystem:../db/schema,filesystem:../db/seeds/common,fi
 
 Never use `ddl-auto=create`, `create-drop`, or `update`. If Hibernate reports a missing table on startup, the fix is to write a migration -- not to change `ddl-auto`.
 
-Flyway uses the text before the first `_` as the version key (`01` from `01_users.sql`, `20240315143022` from `20240315143022_add_phone.sql`) and skips already-applied scripts.
+### File naming
+
+For this stack all Flyway-managed files (schema, seeds, and migrations) use standard Flyway naming: `V<version>__<description>.sql` (prefix `V`, double-underscore separator). This overrides the generic numeric examples in the `db-schema` skill, because Flyway on its defaults silently ignores any file that lacks the `V` prefix and `__` separator, which then surfaces as a Hibernate "missing table" error on startup.
+
+- Baseline schema files use a zero-padded sequential version so load order is human-readable: `V001__users.sql`, `V002__roles.sql`.
+- Seed files continue the sequence in their own range: `V101__config_settings.sql`.
+- Migrations (all changes after the baseline) use a timestamp version: `V<YYYYMMDDHHMMSS>__<description>.sql`, e.g. `V20260807143000__add_phone_to_users.sql`. Timestamp versions sort after the baseline and avoid the collisions that fixed numbers cause when several people add migrations in parallel.
+
+Flyway uses the text between the `V` prefix and the `__` separator as the version key (`001` from `V001__users.sql`, `20260807143000` from `V20260807143000__add_phone_to_users.sql`) and skips already-applied scripts.
 
 ### Startup sequence
 

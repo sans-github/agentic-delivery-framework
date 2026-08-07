@@ -14,7 +14,7 @@ Every schema change requires two things in the same commit: a versioned migratio
 - **No raw DDL outside migration files.** Not in seed scripts, not in application bootstrapping, not in ad-hoc Bash commands.
 - **Never edit an applied migration.** Once applied to any environment, it is frozen. Fix mistakes with a new migration.
 - **One concern per file.** A migration that adds a table must not also alter an unrelated one.
-- **Sequential versioning.** Use a timestamp prefix (`V20260516_01__add_users_table.sql`) or the project's migration tool convention. Never reuse or reorder a version number.
+- **Sequential versioning.** Use a timestamp version (Flyway example: `V20260516120000__add_users_table.sql`) or the project's migration tool convention. Never reuse or reorder a version number.
 - **Reversible by default.** Include a rollback section or paired `undo` file unless the operation is provably irreversible (e.g. data-destructive drops).
 
 ## ER diagram requirements
