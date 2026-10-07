@@ -357,61 +357,117 @@ sequenceDiagram
 
 ### Skills by agent
 
+All agents load `collaboration-contracts`. Code Simplifier loads no other skills.
+
+#### Web app
+
+| Skill | PM | UX | Arch | EM | BE | FE | QA | DevOps |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| prd-craft | ✓ | | | | | | | |
+| brand-guidelines | ✓ | ✓ | | | | ✓ | ✓ | |
+| ui-simplicity | | ✓ | | | | | | |
+| api-design-principles | | | ✓ | ✓ | ✓ | ✓ | ✓ | |
+| db-schema | | | ✓ | ✓ | ✓ | | | |
+| java-springboot | | | | ✓ | ✓ | | | |
+| java-testing | | | | ✓ | ✓ | | | |
+| be-logging | | | | ✓ | ✓ | | | |
+| react-typescript | | | | ✓ | | ✓ | | |
+| fe-testing | | | | | | ✓ | ✓ | |
+| fe-logging | | | | ✓ | | ✓ | | |
+| terraform | | | | ✓ | | | | ✓ |
+
+<details>
+<summary>Mindmap view</summary>
+
 ```mermaid
 mindmap
-  root((Agents))
-    [Backend Engineer]
-      )db-schema(
-      )java-springboot(
-      )api-design-principles(
-      )java-testing(
-      )be-logging(
-      )collaboration-contracts(
-    [Engineering Manager]
-      )db-schema(
-      )java-springboot(
-      )api-design-principles(
-      )react-typescript(
-      )terraform(
-      )java-testing(
-      )be-logging(
-      )fe-logging(
-      )collaboration-contracts(
-    [UX Designer]
-      )brand-guidelines(
-      )ui-simplicity(
-      )collaboration-contracts(
-    [Product Manager]
-      )prd-craft(
-      )brand-guidelines(
-      )collaboration-contracts(
-    [Software Architect]
-      )api-design-principles(
-      )db-schema(
-      )collaboration-contracts(
-    [Frontend Engineer]
-      )api-design-principles(
-      )react-typescript(
-      )fe-testing(
-      )brand-guidelines(
-      )fe-logging(
-      )collaboration-contracts(
-    [DevOps Engineer]
-      )terraform(
-      )collaboration-contracts(
-    [QA Engineer]
-      )api-design-principles(
-      )fe-testing(
-      )brand-guidelines(
-      )collaboration-contracts(
-    [macOS Designer]
-      )macos-hig(
-      )ui-simplicity(
-      )collaboration-contracts(
-    [Swift Engineer]
-      )swiftui-macos(
-      )swift-testing(
-      )collaboration-contracts(
-    [Code Simplifier]
-      )collaboration-contracts(
+  root((Web app))
+    Product and design
+      PM
+        prd-craft
+        brand-guidelines
+      UX Designer
+        brand-guidelines
+        ui-simplicity
+    Engineering
+      Architect
+        api-design-principles
+        db-schema
+      EM
+        api-design-principles
+        db-schema
+        java-springboot
+        java-testing
+        be-logging
+        react-typescript
+        fe-logging
+        terraform
+      BE
+        api-design-principles
+        db-schema
+        java-springboot
+        java-testing
+        be-logging
+      FE
+        api-design-principles
+        react-typescript
+        fe-testing
+        fe-logging
+        brand-guidelines
+      QA
+        api-design-principles
+        fe-testing
+        brand-guidelines
+    Platform
+      DevOps
+        terraform
 ```
+
+</details>
+
+#### Mac app
+
+Web stack skills that EM and QA also load (Java, React, Terraform, FE testing and logging) are omitted here.
+
+> **TODO:** Refactor EM and QA skill loading so Mac app projects do not load web stack skills they never use.
+
+| Skill | PM | macOS Designer | Arch | EM | Swift | QA |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|
+| prd-craft | ✓ | | | | | |
+| brand-guidelines | ✓ | | | | | ✓ |
+| ui-simplicity | | ✓ | | | | |
+| macos-hig | | ✓ | | | | |
+| api-design-principles | | | ✓ | ✓ | | ✓ |
+| db-schema | | | ✓ | ✓ | | |
+| swiftui-macos | | | | | ✓ | |
+| swift-testing | | | | | ✓ | |
+
+<details>
+<summary>Mindmap view</summary>
+
+```mermaid
+mindmap
+  root((Mac app))
+    Product and design
+      PM
+        prd-craft
+        brand-guidelines
+      macOS Designer
+        macos-hig
+        ui-simplicity
+    Engineering
+      Architect
+        api-design-principles
+        db-schema
+      EM
+        api-design-principles
+        db-schema
+      Swift Engineer
+        swiftui-macos
+        swift-testing
+      QA
+        api-design-principles
+        brand-guidelines
+```
+
+</details>
