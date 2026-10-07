@@ -44,6 +44,17 @@ After release, three wrap-up stages run automatically: documentation refresh, co
 
 ---
 
+## Design choices that shape the framework
+
+- **Simple and extensible.** Built only from Claude Code agents, skills, and rules.
+- **Conventions are embedded.** Library choices, logging format, schema migration rules, and testing practices are embedded.
+- **Lean context.** Each agent (PM, designer, engineer, QA) works in its own context and loads only the skills its job needs.
+- **Human in the loop.** Nine approval gates, from PRD to release. Agents stop and wait at each one.
+- **Mistakes don't compound.** No agent builds on an unapproved upstream artifact.
+- **Resumable by design.** A progress file tracks every step with a verifiable done condition, so an interrupted session picks up from the last confirmed step.
+
+---
+
 ## Learn more
 
 - [How it works](docs/how-it-works.md)
